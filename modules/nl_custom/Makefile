@@ -13,4 +13,4 @@ release:
 	@rm -rf .tmp_versions *.mod.* *.o .*.mod .*.ko.cmd .*.o.cmd .cache.mk
 
 clean:
-	@rm -rf .tmp_versions *.mod.* *.o .*.mod .*.ko.cmd .*.o.cmd *.ko .cache.mk Module.symvers modules.order
+	@rm -rf .tmp_versions *.mod.* *.o .*.mod .*.ko.cmd .*.o.cmd *.ko .cache.mk Module.symvers modules.order a.out
