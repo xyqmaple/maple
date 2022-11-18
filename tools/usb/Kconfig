@@ -1,0 +1,21 @@
+config LIBUSB
+	bool "Library for USB Device"
+	default y
+
+config LIBUSB_VERSION
+	string "LIBUSB Version"
+	depends on LIBUSB
+	default "libusb-1.0.26"
+	help
+	  LIBUSB version support: libusb-1.0.24, libusb-1.0.26
+
+config LIBUVC
+	bool "Library for USB Video Device"
+
+config LIBUVC_VERSION
+	string "LIBUVC Version"
+	depends on LIBUVC
+	default "libuvc-0.0.6"
+	help
+	  LIBUVC version support: libuvc-0.0.6
+

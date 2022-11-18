@@ -1,0 +1,4 @@
+config LOG_LEVEL_DEFAULT
+	int "Default log level (1-15)"
+	default 4
+

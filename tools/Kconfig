@@ -1,0 +1,6 @@
+menu "Tools confiuration"
+
+source "tools/usb/Kconfig"
+
+endmenu
+

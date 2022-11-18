@@ -1,0 +1,28 @@
+#
+# Automatically generated file; DO NOT EDIT.
+# Global Configuration List
+#
+
+#
+# General setup
+#
+CONFIG_HOST_CPU="x86_64"
+CONFIG_HOST_VENDOR="pc"
+CONFIG_HOST_OS="linux-gnu"
+CONFIG_CROSS_COMPILE=""
+# end of General setup
+
+#
+# Common confiuration
+#
+CONFIG_LOG_LEVEL_DEFAULT=8
+# end of Common confiuration
+
+#
+# Tools confiuration
+#
+CONFIG_LIBUSB=y
+CONFIG_LIBUSB_VERSION="libusb-1.0.26"
+CONFIG_LIBUVC=y
+CONFIG_LIBUVC_VERSION="libuvc-0.0.6"
+# end of Tools confiuration

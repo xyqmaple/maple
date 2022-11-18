@@ -1,0 +1,27 @@
+mainmenu "Global Configuration List"
+
+menu "General setup"
+
+config HOST_CPU
+	string "Machine Hardware Name"
+	default "x86_64"
+	help
+	  Confirm the machine hardware name with command "uname -m"
+	  (eg: x86_64/aarch64...)
+
+config HOST_VENDOR
+	string "Machine Vendor Name"
+	default "none"
+
+config HOST_OS
+	string "Machine Operation System"
+	default "linux-gnu"
+
+config CROSS_COMPILE
+	string "Cross Compile"
+
+endmenu
+
+source "common/Kconfig"
+source "tools/Kconfig"
+

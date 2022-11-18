@@ -1,0 +1,49 @@
+#!/bin/bash
+source $TOP_DIR/.config
+source $TOP_DIR/scripts/log.sh
+
+CUR_DIR=$(cd $(dirname $0); pwd)
+CMD=$1
+VERSION=$CONFIG_LIBUVC_VERSION
+
+libuvc_check_version()
+{
+	if [ -d $CUR_DIR/$VERSION ]; then
+		return 0
+	else
+		ERR "$VERSION is not exist!"
+		exit 1 # Failure
+	fi
+}
+
+libuvc_build()
+{
+	mkdir -p $CUR_DIR/$VERSION/build
+
+	pushd $CUR_DIR/$VERSION/build
+		cmake -DCMAKE_INSTALL_PREFIX=$CUR_DIR -DCMAKE_C_COMPILER=${CONFIG_CROSS_COMPILE}gcc -DCMAKE_CPP_COMPILER=${CONFIG_CROSS_COMPILE}g++ ..
+		make; make install
+	popd
+}
+
+libuvc_clean()
+{
+	pushd $CUR_DIR/$VERSION/build; make clean; popd
+}
+
+libuvc_distclean()
+{
+	rm -rf $CUR_DIR/$VERSION/build
+	rm -rf $CUR_DIR/include
+	rm -rf $CUR_DIR/lib
+}
+
+libuvc_check_version
+
+if [ "$CMD" = "build" ]; then
+	libuvc_build
+elif [ "$CMD" = "clean" ]; then
+	libuvc_clean
+elif [ "$CMD" = "distclean" ]; then
+	libuvc_distclean
+fi

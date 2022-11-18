@@ -1,0 +1,6 @@
+menu "Common confiuration"
+
+source "common/base/Kconfig"
+
+endmenu
+
