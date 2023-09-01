@@ -1,5 +1,4 @@
-# maple
-Maple's repository which is used to test code.
+# Home
 
-2019/02/17
-    Today is my first time to use github.
+Welcome to use this tool!
+
