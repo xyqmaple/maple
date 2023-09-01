@@ -68,5 +68,8 @@ static void __exit nl_custom_exit(void)
 }
 module_exit(nl_custom_exit);
 
-MODULE_LICENSE("GPL");
+MODULE_LICENSE("GPL v2");
+MODULE_AUTHOR("yeqiang_xu");
+MODULE_DESCRIPTION("Custom netlink driver");
+MODULE_VERSION("1.8.6");
 

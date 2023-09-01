@@ -1,0 +1,8 @@
+#!/bin/bash
+
+pushd ./html
+rm -rf *
+popd
+
+sphinx-build -b html ./rst/ ./html/
+

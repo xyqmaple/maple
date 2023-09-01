@@ -1,0 +1,5 @@
+.vscode
+diff.patch
+include/config
+include/generated
+
