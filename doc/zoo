@@ -1,8 +1,10 @@
 #!/bin/bash
 
-pushd ./html
-rm -rf *
-popd
+rm -rf ./rst/api
+rm -rf ./html
+
+mkdir -p ./rst/api
+mkdir -p ./html
 
 sphinx-build -b html ./rst/ ./html/
 

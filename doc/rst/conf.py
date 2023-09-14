@@ -41,6 +41,7 @@ exclude_patterns = ['output']
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
 
+primary_domain = 'c'
 highlight_language = 'none'
 
 # If true, '()' will be appended to :func: etc. cross-reference text.
@@ -50,20 +51,71 @@ highlight_language = 'none'
 # unit titles (such as .. function::).
 #add_module_names = True
 
-# --------------------------------------------------------------------------- #
+# =========================================================================== #
 # Options for Sphinx Extensions
-# --------------------------------------------------------------------------- #
+# =========================================================================== #
 
 # Add any Sphinx extension module names here, as strings. They can be
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
-extensions = ['sphinx.ext.todo']
+extensions = [
+	# Inline extension
+	'sphinx.ext.todo',
+	# Third extension
+	'breathe',
+	# 'exhale',
+	'sphinx_design',
+	# 'sphinx_panels',
+	'sphinx_tabs.tabs',
+	# 'sphinx_togglebutton',
+]
 
-# If true, `todo` and `todoList` produce output, else they produce nothing.
-todo_include_todos = True
+# --------------------------------------------------------------------------- #
+# breathe configuration
+# --------------------------------------------------------------------------- #
+if 'breathe' in extensions:
+	breathe_projects = {
+		"demo": "../../output/xml"
+	}
 
-# If true, 'todo' emits a warning for each TODO entries.
-todo_emit_warnings = False
+	breathe_default_project = 'demo'
+
+	breathe_domain_by_extension = {
+		"c" : "c",
+		"h" : "c",
+	}
+
+# --------------------------------------------------------------------------- #
+# exhale configuration
+# --------------------------------------------------------------------------- #
+if 'exhale' in extensions:
+	exhale_args = {
+		"containmentFolder":		"./api",
+		"rootFileName":			"library_root.rst",
+		"rootFileTitle":		"Library API",
+		"doxygenStripFromPath":		"..",
+		# Suggested optional arguments
+		"createTreeView":		True,
+		"exhaleExecutesDoxygen":	False,
+		"exhaleDoxygenStdin":		"INPUT = ../../lib"
+	}
+
+# --------------------------------------------------------------------------- #
+# sphinx.ext.todo configuration
+# --------------------------------------------------------------------------- #
+if 'sphinx.ext.todo' in extensions:
+	# If true, `todo` and `todoList` produce output, else they produce nothing.
+	todo_include_todos = True
+
+	# If true, 'todo' emits a warning for each TODO entries.
+	todo_emit_warnings = False
+
+# --------------------------------------------------------------------------- #
+# sphinx-togglebutton configuration
+# --------------------------------------------------------------------------- #
+if 'sphinx_togglebutton' in extensions:
+	togglebutton_hint = 'click to show'
+	togglebutton_hint_hide = 'click to hide'
 
 # --------------------------------------------------------------------------- #
 # Options for HTML Output
@@ -73,20 +125,29 @@ todo_emit_warnings = False
 # - https://github.com/snide/sphinx_rtd_theme
 # - https://pypi.python.org/pypi/sphinx_rtd_theme
 # - python-sphinx-rtd-theme package (on Debian)
-try:
-	import sphinx_rtd_theme
-	html_theme = 'sphinx_rtd_theme'
-	html_theme_path = [sphinx_rtd_theme.get_html_theme_path()]
-except ImportError:
-	sys.stderr.write('Warning: The Sphinx \'sphinx_rtd_theme\' HTML \
-		theme was not found. Make sure you have the theme installed \
-		to produce pretty HTML output. Falling back to the default \
-		theme.\n')
+# try:
+# 	import sphinx_rtd_theme
+# 	html_theme = 'sphinx_rtd_theme'
+# 	html_theme_path = [sphinx_rtd_theme.get_html_theme_path()]
+# except ImportError:
+# 	sys.stderr.write('Warning: The Sphinx \'sphinx_rtd_theme\' HTML \
+# 		theme was not found. Make sure you have the theme installed \
+# 		to produce pretty HTML output. Falling back to the default \
+# 		theme.\n')
+
+# html_theme = 'classic'
+# html_theme = 'press'
+html_theme = 'sphinx_book_theme'
 
 # Theme options are theme-specific and customize the look and feel of a theme
 # further.  For a list of options available for each theme, see the
 # documentation.
-#html_theme_options = {}
+if html_theme == 'sphinx_book_theme':
+	html_theme_options = {
+		"home_page_in_toc": True,
+		"show_navbar_depth": 3,
+		"show_toc_level": 1,
+	}
 
 # The name for this set of Sphinx documents.  If None, it defaults to
 # "<project> v<release> documentation".
