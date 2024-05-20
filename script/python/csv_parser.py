@@ -18,6 +18,7 @@ class PCIeTraceParser(object):
 		logger.notice('Start to parse \'%s\' ...$' %csvfile)
 		self.__readFile(csvfile)
 		self.__parse()
+		self.__writeFile(csvfile)
 
 	def __readFile(self, csvfile: str) -> None:
 		with open(csvfile, 'r', newline='') as fd:
@@ -30,7 +31,12 @@ class PCIeTraceParser(object):
 			logger.dbg('csv file total lines: %d' %self.rdata['total'])
 
 	def __writeFile(self, csvfile: str) -> None:
+		_newfile = csvfile.replace('.csv', '_parsed.csv', 1)
+		with open(_newfile, 'w', newline='', encoding='utf-8') as fd:
+			_csvwriter = csv.writer(fd)
+			_csvwriter.writerow(self.result)
 		pass
+		logger.dbg('save data to \'%s\'' %_newfile)
 
 	def __parse(self) -> None:
 		self.__parseHeader()
